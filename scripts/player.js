@@ -3,7 +3,10 @@
  */
 
 
-const STARTING_FUEL = 100;
+const FUEL_FULL_TANK = 100;
+const FUEL_REFILL_RATE = 2;
+const FUEL_BURN_RATE = 6;
+
 const STARTING_SPEED = 10;
 const PLAYER_HEIGHT = 75;
 const PLAYER_WIDTH = 20;
@@ -12,7 +15,7 @@ const GRAVITY = 10;
 
 function Player(spawnX, spawnY, lives) {
     this.lives = lives;
-    this.fuel = STARTING_FUEL;
+    this.fuel = FUEL_FULL_TANK;
     this.x = spawnX;
     this.y = spawnY;
     this.dx = STARTING_SPEED;
@@ -24,33 +27,36 @@ function Player(spawnX, spawnY, lives) {
 
     this.feelTheGravity = playerGravity;
 
-    this.fireRockets = movePlayerUp;
+    this.fireRockets = fireRockets;
+
+    this.respawn = playerRespawn;
 }
 
 function updatePlayer() {
 
     this.feelTheGravity();
 
+    if (this.fuel < FUEL_FULL_TANK) {
+        this.fuel += FUEL_REFILL_RATE;
+    }
+
     if (leftPressed) { 
-        console.log("LEFT");
         this.moveLeft();
     }
 
     if (rightPressed) { 
-        console.log("RIGHT");
         this.moveRight();
     }
 
     if (upPressed) {
-        console.log("UP");
         this.fireRockets();
     }
 }
 
 function playerGravity () {
-    console.log(playerIsOnAPlacedPlatforms(this));
     if (playerAboveFloor(this.y) &&
         !playerIsOnAPlacedPlatforms(this)) {
+
         this.y += GRAVITY;
     }
 }
@@ -59,7 +65,6 @@ function playerIsOnAPlacedPlatforms(player) {
     var ret = false;
     placedPlatforms.forEach(function(pp) {
         if (pp.playerIsOnPlatform(player)) {
-            console.log("LANDING");
             ret = true;
         }
     })
@@ -96,11 +101,27 @@ function movePlayerRight() {
     }
 }
 
-function movePlayerUp() {
+function fireRockets() {
     // Negative since we want to move closer to origin Y (or top)
     // But don't let him/her break through the 
     // atmosphere (don't want themto die due to lack of oxygen) 
-    if (this.y > 0) {
-        this.y -= ROCKET_SPEED;
+    if (this.fuel > 0) {
+        if (this.y > 0) {
+            this.y -= ROCKET_SPEED;
+            // Adding on FUEL_REFILL_RATE to disable refilling
+            // while rockets are firing
+            //
+            //      Makes traversing side to side too easy
+            this.fuel -= FUEL_BURN_RATE + FUEL_REFILL_RATE; 
+        }
     }
+}
+
+/**
+ * Move the player back to the bottom at a random position
+ */
+function playerRespawn() {
+    this.lives--;
+    this.y = canvas.height - PLAYER_HEIGHT;
+    // TODO: move them to a random x
 }

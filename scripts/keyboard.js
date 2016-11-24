@@ -7,7 +7,7 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e) {
-    console.log(e.keyCode);
+    // console.log(e.keyCode);
     switch (e.keyCode) {
         case 37: leftPressed = true; break;
         case 38: upPressed = true; break;

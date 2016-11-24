@@ -16,6 +16,13 @@ placedPlatforms.push(new PlacedPlatform(80,550));
 
 console.log(p1);
 
+function drawStatus() {
+
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Fuel: "+p1.fuel, 8, 20);
+}
+
 function drawPlacedPlatforms() {
     placedPlatforms.forEach(function(pp) {
         pp.draw();
@@ -31,6 +38,7 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawPlacedPlatforms();
     p1.draw();
+    drawStatus();
     // drawBall();
 }
 

@@ -13,9 +13,6 @@ p1 = new Player(
 
 fallingPlatform = new FallingPlatform();
 
-placedPlatforms.push(new PlacedPlatform(400,500));
-placedPlatforms.push(new PlacedPlatform(80,550));
-
 console.log(p1);
 
 function drawStatus() {

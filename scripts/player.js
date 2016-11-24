@@ -17,7 +17,6 @@ function Player(spawnX, spawnY, lives) {
     this.y = spawnY;
     this.dx = STARTING_SPEED;
     this.dy = STARTING_SPEED;
-
     this.draw = drawPlayer;
     this.update = updatePlayer;
     this.moveLeft = movePlayerLeft;
@@ -49,13 +48,26 @@ function updatePlayer() {
 }
 
 function playerGravity () {
-    if (playerAboveFloor(this.y)) {
+    console.log(playerIsOnAPlacedPlatforms(this));
+    if (playerAboveFloor(this.y) &&
+        !playerIsOnAPlacedPlatforms(this)) {
         this.y += GRAVITY;
     }
 }
 
+function playerIsOnAPlacedPlatforms(player) {
+    var ret = false;
+    placedPlatforms.forEach(function(pp) {
+        if (pp.playerIsOnPlatform(player)) {
+            console.log("LANDING");
+            ret = true;
+        }
+    })
+    return ret;
+}
+
 function playerAboveFloor(playerY) {
-    console.log(playerY, canvas.height - PLAYER_HEIGHT);
+    // console.log(playerY, canvas.height - PLAYER_HEIGHT);
     return (playerY < (canvas.height - PLAYER_HEIGHT));
 }
 

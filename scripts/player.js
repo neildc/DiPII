@@ -12,10 +12,12 @@ const PLAYER_HEIGHT = 75;
 const PLAYER_WIDTH = 20;
 const ROCKET_SPEED = 20;
 const GRAVITY = 10;
+const MAX_PLATFORMS = 10;
 
 function Player(spawnX, spawnY, lives) {
     this.lives = lives;
     this.fuel = FUEL_FULL_TANK;
+    this.platforms = MAX_PLATFORMS;
     this.x = spawnX;
     this.y = spawnY;
     this.dx = STARTING_SPEED;
@@ -28,8 +30,8 @@ function Player(spawnX, spawnY, lives) {
     this.feelTheGravity = playerGravity;
 
     this.fireRockets = fireRockets;
-
     this.respawn = playerRespawn;
+    this.placePlatform = placePlatform;
 }
 
 function updatePlayer() {
@@ -50,6 +52,9 @@ function updatePlayer() {
 
     if (upPressed) {
         this.fireRockets();
+    }
+    if (spacePressed) {
+        this.placePlatform();
     }
 }
 
@@ -116,6 +121,18 @@ function fireRockets() {
         }
     }
 }
+
+function placePlatform() {
+    if (this.platforms > 0 && fallingPlatform.y > 40) {
+        placedPlatforms.push(new PlacedPlatform(
+                fallingPlatform.x,
+                fallingPlatform.y
+            ));
+        this.platforms--;
+        fallingPlatform.resetToTop();
+    }
+}
+
 
 /**
  * Move the player back to the bottom at a random position

@@ -10,7 +10,7 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e) {
-    console.log(e.keyCode);
+    //console.log(e.keyCode);
     switch (e.keyCode) {
         case 37: leftPressed = true; break;
         case 38: upPressed = true; break;
@@ -21,6 +21,8 @@ function keyDownHandler(e) {
         case 83: sPressed = true; break;
         case 32: spacePressed = true; break;
     }
+    e.preventDefault();
+
 }
 
 function keyUpHandler(e) {
@@ -34,4 +36,6 @@ function keyUpHandler(e) {
         case 83: sPressed = false; break;
         case 32: spacePressed = false; break;
     }
+    e.preventDefault();
+
 }

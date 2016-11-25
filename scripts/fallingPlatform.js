@@ -1,10 +1,11 @@
 
-FALLING_RATE = 3;
+BASE_FALLING_RATE = 3;
 PLATFORM_SIDE_SPEED = 2;
 
 function FallingPlatform() {
     this.x = canvas.width/2;
     this.y = 0;
+    this.speed = BASE_FALLING_RATE * goal.getSpeedMultiplier();
 
     this.draw = function () {
         ctx.beginPath();
@@ -17,11 +18,10 @@ function FallingPlatform() {
 
     this.rect = function() {return {x:this.x, y:this.y, width:PLATFORM_WIDTH, height:PLATFORM_HEIGHT}};
 
-
+PLATFORM_HEIGHT
     this.resetToTop = function() {
         this.y = 0; 
-        var rightBound = canvas.width - PLATFORM_WIDTH;
-        this.x = Math.floor((Math.random() * rightBound) + 0);  
+        this.x = randomXInCanvasWidth(PLATFORM_WIDTH); 
     }
 
     this.crashedIntoTheGround = function() {
@@ -61,7 +61,7 @@ function FallingPlatform() {
         if (this.crashedIntoTheGround()) {
             this.resetToTop();
         }
-        this.y += FALLING_RATE;
+        this.y += this.speed;
 
         if (aPressed) {
             this.moveLeft();

@@ -8,3 +8,9 @@ function collision(rect1, rect2){
        rect1.y < rect2.y + rect2.height &&
        rect1.height + rect1.y > rect2.y)
 }
+
+function randomXInCanvasWidth(modelWidth) {
+    var rightBound = canvas.width - modelWidth;
+    // Random value between 0 - rightbound
+    return (Math.floor((Math.random() * rightBound) + 0));
+}

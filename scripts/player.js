@@ -32,6 +32,7 @@ function Player(spawnX, spawnY, lives) {
     this.fireRockets = fireRockets;
     this.respawn = playerRespawn;
     this.placePlatform = placePlatform;
+    this.resetToBottom = resetPlayerToBottom;
 }
 
 function updatePlayer() {
@@ -133,12 +134,15 @@ function placePlatform() {
     }
 }
 
+function resetPlayerToBottom() {
+    this.y = canvas.height - PLAYER_HEIGHT;
+}
 
 /**
  * Move the player back to the bottom at a random position
  */
 function playerRespawn() {
     this.lives--;
-    this.y = canvas.height - PLAYER_HEIGHT;
+    this.resetToBottom();
     // TODO: move them to a random x
 }

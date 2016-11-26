@@ -18,7 +18,6 @@ function FallingPlatform() {
 
     this.rect = function() {return {x:this.x, y:this.y, width:PLATFORM_WIDTH, height:PLATFORM_HEIGHT}};
 
-PLATFORM_HEIGHT
     this.resetToTop = function() {
         this.y = 0; 
         this.x = randomXInCanvasWidth(PLATFORM_WIDTH); 

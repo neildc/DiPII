@@ -9,7 +9,7 @@ function PlacedPlatform(x, y){
     this.draw = function () {
         ctx.beginPath();
         ctx.rect(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#00FF00";
         ctx.fill();
         ctx.closePath();
     } 

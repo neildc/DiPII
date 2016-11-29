@@ -4,6 +4,7 @@ var downPressed = false;
 var upPressed = false;
 var aPressed = false;
 var dPressed = false;
+var sPressed = false;
 var spacePressed = false;
 
 document.addEventListener("keydown", keyDownHandler, false);

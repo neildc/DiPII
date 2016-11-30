@@ -7,11 +7,14 @@ function PlacedPlatform(x, y){
     this.y = y;
 
     this.draw = function () {
-        ctx.beginPath();
-        ctx.rect(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
-        ctx.fillStyle = "#00FF00";
-        ctx.fill();
-        ctx.closePath();
+
+        ctx.drawImage(dollarBill, this.x, this.y);
+
+        // ctx.beginPath();
+        // ctx.rect(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
+        // ctx.fillStyle = "#00FF00";
+        // ctx.fill();
+        // ctx.closePath();
     } 
 
     /**

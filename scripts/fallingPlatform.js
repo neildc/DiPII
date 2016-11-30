@@ -9,11 +9,14 @@ function FallingPlatform() {
     this.speed = BASE_FALLING_RATE * goal.getSpeedMultiplier();
 
     this.draw = function () {
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
-        ctx.fillStyle = "#FFFF00";
-        ctx.fill();
-        ctx.closePath();
+
+        ctx.drawImage(amazonLogo, this.x, this.y);
+
+        // ctx.beginPath();
+        // ctx.rect(this.x, this.y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
+        // ctx.fillStyle = "#FFFF00";
+        // ctx.fill();
+        // ctx.closePath();
     } 
 
     this.rect = function() {return {x:this.x, y:this.y, width:PLATFORM_WIDTH, height:PLATFORM_HEIGHT}};
@@ -35,10 +38,10 @@ function FallingPlatform() {
     }
 
     this.collidedWithPlacedPlatform = function(pp) {
-        var playerRect = {x: pp.x, y: pp.y,
+        var placedPlatformRect = {x: pp.x, y: pp.y,
                           width: PLATFORM_WIDTH, height: PLATFORM_HEIGHT};
 
-        return collision(playerRect, this.rect());
+        return collision(placedPlatformRect, this.rect());
 
     }
 
@@ -57,6 +60,8 @@ function FallingPlatform() {
     }
 
     this.update = function () {
+        // Ensure that there is always a falling block visible 
+        // on the screen
         if (this.crashedIntoTheGround()) {
             this.resetToTop();
         }
@@ -65,6 +70,7 @@ function FallingPlatform() {
         if (sPressed) {
             this.y += this.speed * FALL_SPEED_UP;
         } else {
+            // Platform still falls with no input
             this.y += this.speed;
         }
 

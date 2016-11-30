@@ -8,11 +8,12 @@ function Goal() {
     this.x = randomXInCanvasWidth(GOAL_SIZE);
 
     this.draw = function () {
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, GOAL_SIZE, GOAL_SIZE);
-        ctx.fillStyle = "#000095";
-        ctx.fill();
-        ctx.closePath();
+        ctx.drawImage(stanLogo, this.x, this.y);
+        // ctx.beginPath();
+        // ctx.rect(this.x, this.y, GOAL_SIZE, GOAL_SIZE);
+        // ctx.fillStyle = "#000095";
+        // ctx.fill();
+        // ctx.closePath();
         
     }
 

@@ -33,15 +33,6 @@ var sources = {
     fire: 'res/fire.png'
 };
 
-loadImages(sources, function(images) {
-
-    stanLogo = images.stanLogo;
-    amazonLogo = images.amazonLogo;
-    netflixLogo = images.netflixLogo;
-    dollarBill = images.dollarBill;
-    dude = images.dollarBill;
-    fire = images.fire;
-});
 
 //
 // var stanLogo = new Image();

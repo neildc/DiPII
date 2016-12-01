@@ -23,8 +23,19 @@
     <script src="scripts/fallingPlatform.js" type="text/javascript"></script>
     <script src="scripts/goal.js" type="text/javascript"></script>
     <script src="scripts/game.js" type="text/javascript"></script>
-    <script> resetGame(); </script>
-    <script> setInterval(loop, 10); </script>
+    <script>
+
+        loadImages(sources, function(images) {
+            stanLogo = images.stanLogo;
+            amazonLogo = images.amazonLogo;
+            netflixLogo = images.netflixLogo;
+            dollarBill = images.dollarBill;
+            dude = images.dollarBill;
+            fire = images.fire;
+            resetGame();
+            setInterval(loop, 10);
+        });
+    </script>
 
     <img src="help/Help1.png" />
     <img src="help/Help2.png" />

@@ -45,6 +45,7 @@ function invertKeys() {
         disableNormalKeyEventListeners();
         enableInvertedKeyEventListeners();
     }
+    invertedKeys = !invertedKeys;
     resetKeyState();
 }
 

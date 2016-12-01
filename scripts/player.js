@@ -3,13 +3,13 @@
  */
 
 
-const FUEL_FULL_TANK = 75;
+const FUEL_FULL_TANK = 100;
 const FUEL_REFILL_RATE = 2;
 const FUEL_BURN_RATE = 6;
 
 const STARTING_SPEED = 10;
 const PLAYER_HEIGHT = 75;
-const PLAYER_WIDTH = 20;
+const PLAYER_WIDTH = 25;
 const ROCKET_SPEED = 20;
 const GRAVITY = 10;
 const MAX_PLATFORMS = 10;
@@ -97,11 +97,7 @@ function playerAboveFloor(playerY) {
 
 function drawPlayer() {
 
-    ctx.beginPath();
-    ctx.rect(this.x, this.y, PLAYER_WIDTH, PLAYER_HEIGHT);
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fill();
-    ctx.closePath();
+    ctx.drawImage(dude, this.x,this.y);
 
 }
 
@@ -121,19 +117,26 @@ function movePlayerRight() {
 
 function fireRockets() {
     if (this.fuel > 0) {
-        // Don't let him/her break through the 
-        // atmosphere (don't want themto die due to lack of oxygen) 
-        if (this.y > 0) {
-            // Negative since we want to move closer to origin Y (or top)
-            this.y -= ROCKET_SPEED;
 
-            // Adding on FUEL_REFILL_RATE to disable refilling
-            // while rockets are firing
-            //
-            //      Makes traversing side to side too easy
-            this.fuel -= (FUEL_BURN_RATE + FUEL_REFILL_RATE);
+        if (this.fuel < 20) {
+            this.fuel -= (FUEL_REFILL_RATE);
+        } else {
+            ctx.drawImage(fire, this.x, this.y);
+            // Don't let him/her break through the
+            // atmosphere (don't want themto die due to lack of oxygen)
+            if (this.y > 0) {
+                // Negative since we want to move closer to origin Y (or top)
+                this.y -= ROCKET_SPEED;
+
+                // Adding on FUEL_REFILL_RATE to disable refilling
+                // while rockets are firing
+                //
+                //      Makes traversing side to side too easy
+                this.fuel -= (FUEL_BURN_RATE + FUEL_REFILL_RATE);
+            }
         }
     }
+
 }
 
 function placePlatform() {

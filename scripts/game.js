@@ -13,11 +13,12 @@ console.log(p1);
 
 function drawStatus() {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#FFFFFF";
     ctx.fillText("Fuel: "+p1.fuel, 8, 20);
     ctx.fillText("Lives: "+p1.lives, 8, 40);
-    ctx.fillText("Platforms: "+p1.platforms, 8, 60);
-    ctx.fillText("Level: "+goal.currentLevel, 8, 80);
+    ctx.fillText("Platforms: $"+p1.platforms, 8, 60);
+    // ctx.fillText("Level: "+goal.currentLevel, 8, 80);
+    ctx.fillText("Subscribers: "+subscribers, 550, 20);
 }
 
 function drawPlacedPlatforms() {
@@ -54,7 +55,8 @@ function detectCollisions() {
 }
 
 function update() {
-    if (p1.lives == 0) {
+    subscribers -= 100;
+    if (p1.lives == 0 || subscribers == 0) {
         gameover();
     } else {
         p1.update();
@@ -75,8 +77,8 @@ function draw() {
 function loop() {
 
     detectCollisions();
-    update();
     draw();
+    update();
 
 }
 
@@ -84,10 +86,12 @@ function levelUp() {
     goal.levelUp();
     fallingPlatform.speed = BASE_FALLING_RATE * goal.getSpeedMultiplier();
     console.log(fallingPlatform.speed);
+    subscribers+= (((goal.currentLevel*goal.currentLevel) * 100000) / 5);
     resetPlayerToBottom();
 }
 
 function resetGame() {
+    subscribers = 100000;
     p1 = new Player(
                 canvas.width/2,
                 canvas.height - PLAYER_HEIGHT,

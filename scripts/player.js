@@ -3,7 +3,7 @@
  */
 
 
-const FUEL_FULL_TANK = 100;
+const FUEL_FULL_TANK = 75;
 const FUEL_REFILL_RATE = 2;
 const FUEL_BURN_RATE = 6;
 
@@ -61,7 +61,7 @@ function updatePlayer() {
         if (fallingPlatform.y > 50) {
             // 10% chance of placing an invert block instead
             // of a normal block
-            if (Math.floor(((Math.random() * 10) + 0)) == 0) {
+            if ((Math.floor((Math.random() * 10) + 0)) == 0) {
                 this.placeInvertBlock();
             } else {
                 this.placePlatform();
@@ -154,7 +154,7 @@ function placeInvertBlock() {
     invertBlock = new InvertBlock(
         fallingPlatform.x,
         fallingPlatform.y
-    )
+    );
     fallingPlatform.resetToTop();
 
 }

@@ -1,7 +1,3 @@
-
-PLATFORM_WIDTH = 75;
-PLATFORM_HEIGHT = 15;
-
 function PlacedPlatform(x, y){
     this.x = x;
     this.y = y;
@@ -22,7 +18,6 @@ function PlacedPlatform(x, y){
 
         // Allow player to stand of the left edge
         var platformLeftBound = this.x - PLAYER_WIDTH;
-
         var platformRightBound = this.x + PLATFORM_WIDTH;
 
         // console.log(player);

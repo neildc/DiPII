@@ -1,6 +1,6 @@
 GOAL_SIZE = 50;
 LEVEL_STEP = 70;
-SPEED_MULTIPLIER = 0.4;
+SPEED_MULTIPLIER = 0.3;
 
 function Goal() {
     this.currentLevel = 1; //TODO: not sure if this should go here

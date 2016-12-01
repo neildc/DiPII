@@ -48,14 +48,14 @@ function FallingPlatform() {
     this.moveLeft = function() {
         var leftBound = 0;
         if (this.x > leftBound) {
-            this.x -= PLATFORM_SIDE_SPEED;
+            this.x -= this.speed;
         }
     }
 
     this.moveRight = function() {
         var rightBound = canvas.width - PLATFORM_WIDTH;
         if (this.x < rightBound) {
-            this.x += PLATFORM_SIDE_SPEED;
+            this.x += this.speed;
         }
     }
 

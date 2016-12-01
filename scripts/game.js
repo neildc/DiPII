@@ -6,12 +6,12 @@ var canvas = document.getElementById("gameCanvas");
 canvas.tabIndex = 1;
 
 var ctx = canvas.getContext("2d");
+enableNormalKeyEventListeners();
 resetGame();
 
-console.log(p1);
+console.log(p1); 
 
 function drawStatus() {
-
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
     ctx.fillText("Fuel: "+p1.fuel, 8, 20);
@@ -38,6 +38,13 @@ function detectCollisions() {
         levelUp();
     }
 
+    if (invertBlock != null) {
+        if (invertBlock.collidedWithPlayer(p1)) {
+            invertBlock = null;
+            invertKeys();
+        }
+    }
+
     placedPlatforms.forEach(function(pp) {
         if (fallingPlatform.collidedWithPlacedPlatform(pp)) {
             placedPlatforms.splice(placedPlatforms.indexOf(pp) , 1);
@@ -61,6 +68,7 @@ function draw() {
     p1.draw();
     goal.draw();
     fallingPlatform.draw();
+    if (invertBlock != null) invertBlock.draw();
     drawStatus();
 }
 
@@ -90,6 +98,7 @@ function resetGame() {
 
     placedPlatforms = [];
     fallingPlatform = new FallingPlatform();
+    invertBlock = null;
 
 }
 

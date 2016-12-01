@@ -3,7 +3,7 @@
  */
 
 
-const FUEL_FULL_TANK = 100;
+const FUEL_FULL_TANK = 75;
 const FUEL_REFILL_RATE = 2;
 const FUEL_BURN_RATE = 6;
 
@@ -32,6 +32,7 @@ function Player(spawnX, spawnY, lives) {
     this.fireRockets = fireRockets;
     this.respawn = playerRespawn;
     this.placePlatform = placePlatform;
+    this.placeInvertBlock = placeInvertBlock;
     this.resetToBottom = resetPlayerToBottom;
 }
 
@@ -55,7 +56,18 @@ function updatePlayer() {
         this.fireRockets();
     }
     if (spacePressed) {
-        this.placePlatform();
+
+        // TODO: proper debounce/single press
+        if (fallingPlatform.y > 50) {
+            // 10% chance of placing an invert block instead
+            // of a normal block
+            if ((Math.floor((Math.random() * 10) + 0)) == 0) {
+                this.placeInvertBlock();
+            } else {
+                this.placePlatform();
+            }
+        }
+
     }
 }
 
@@ -108,23 +120,24 @@ function movePlayerRight() {
 }
 
 function fireRockets() {
-    // Negative since we want to move closer to origin Y (or top)
-    // But don't let him/her break through the 
-    // atmosphere (don't want themto die due to lack of oxygen) 
     if (this.fuel > 0) {
+        // Don't let him/her break through the 
+        // atmosphere (don't want themto die due to lack of oxygen) 
         if (this.y > 0) {
+            // Negative since we want to move closer to origin Y (or top)
             this.y -= ROCKET_SPEED;
+
             // Adding on FUEL_REFILL_RATE to disable refilling
             // while rockets are firing
             //
             //      Makes traversing side to side too easy
-            this.fuel -= FUEL_BURN_RATE + FUEL_REFILL_RATE; 
+            this.fuel -= (FUEL_BURN_RATE + FUEL_REFILL_RATE);
         }
     }
 }
 
 function placePlatform() {
-    if (this.platforms > 0 && fallingPlatform.y > 40) {
+    if (this.platforms > 0) {
         placedPlatforms.push(new PlacedPlatform(
                 fallingPlatform.x,
                 fallingPlatform.y
@@ -132,6 +145,18 @@ function placePlatform() {
         this.platforms--;
         fallingPlatform.resetToTop();
     }
+}
+
+function placeInvertBlock() {
+
+    // Overwrite the existing invertblock if its there
+    // We only want a single invertblock at any time
+    invertBlock = new InvertBlock(
+        fallingPlatform.x,
+        fallingPlatform.y
+    );
+    fallingPlatform.resetToTop();
+
 }
 
 function resetPlayerToBottom() {

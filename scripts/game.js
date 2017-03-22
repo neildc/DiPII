@@ -9,7 +9,7 @@ var ctx = canvas.getContext("2d");
 enableNormalKeyEventListeners();
 resetGame();
 
-console.log(p1); 
+console.log(p1);
 
 function drawStatus() {
     ctx.font = "16px Arial";
@@ -84,7 +84,7 @@ function levelUp() {
     goal.levelUp();
     fallingPlatform.speed = BASE_FALLING_RATE * goal.getSpeedMultiplier();
     console.log(fallingPlatform.speed);
-    resetPlayerToBottom();
+    p1.resetPlayerToBottom();
 }
 
 function resetGame() {

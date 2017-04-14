@@ -1,28 +1,33 @@
 /**
  * invertBlock.js
- * 
+ *
  */
 
-function InvertBlock(x, y)  {
-   this.x = x; 
-   this.y = y;
+class InvertBlock {
 
-   this.draw = function () {
+   constructor(x,y){
+       this.x = x;
+       this.y = y;
+   }
+
+   draw() {
         ctx.beginPath();
         ctx.rect(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
         ctx.fillStyle = "#FF0000";
         ctx.fill();
         ctx.closePath();
-    } 
-    
-    this.rect = function() {return {x:this.x, y:this.y, width:PLATFORM_WIDTH, height:PLATFORM_HEIGHT}};
+    }
+
+    rect() {
+        return {x:this.x, y:this.y, width:PLATFORM_WIDTH, height:PLATFORM_HEIGHT};
+    }
 
 
-    this.collidedWithPlayer = function(player) {
+    collidedWithPlayer(player) {
         var playerRect = {x: player.x, y: player.y,
                           width: PLAYER_WIDTH, height: PLAYER_HEIGHT};
 
         return collision(playerRect, this.rect());
     }
 
-} 
+}

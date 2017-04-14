@@ -2,23 +2,27 @@ GOAL_SIZE = 50;
 LEVEL_STEP = 70;
 SPEED_MULTIPLIER = 0.3;
 
-function Goal() {
-    this.currentLevel = 1; //TODO: not sure if this should go here
-    this.y = yFromLevel(1); 
-    this.x = randomXInCanvasWidth(GOAL_SIZE);
+class Goal {
 
-    this.draw = function () {
+    constructor () {
+        this.currentLevel = 1; //TODO: not sure if this should go here
+        this.y = yFromLevel(1);
+        this.x = randomXInCanvasWidth(GOAL_SIZE);
+    }
+
+    draw() {
         ctx.beginPath();
         ctx.rect(this.x, this.y, GOAL_SIZE, GOAL_SIZE);
         ctx.fillStyle = "#000095";
         ctx.fill();
         ctx.closePath();
-        
     }
 
-    this.rect = function() {return {x:this.x, y:this.y, width:GOAL_SIZE, height:GOAL_SIZE}};
+    rect() {
+        return {x:this.x, y:this.y, width:GOAL_SIZE, height:GOAL_SIZE};
+    }
 
-    this.collidedWithPlayer = function(player) {
+    collidedWithPlayer(player) {
 
         var playerRect = {x: player.x, y: player.y,
                           width: PLAYER_WIDTH, height: PLAYER_HEIGHT};
@@ -26,14 +30,14 @@ function Goal() {
         return collision(playerRect, this.rect());
     }
 
-    this.levelUp = function () {
+    levelUp() {
         this.currentLevel++;
         this.y = yFromLevel(this.currentLevel); 
         this.x = randomXInCanvasWidth(GOAL_SIZE);
 
     }
 
-    this.getSpeedMultiplier = function() {
+    getSpeedMultiplier() {
         return (SPEED_MULTIPLIER * this.currentLevel);
     }
 

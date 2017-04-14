@@ -21,10 +21,7 @@ function drawStatus() {
 }
 
 function drawPlacedPlatforms() {
-    placedPlatforms.forEach(function(pp) {
-        pp.draw();
-    })
-
+    placedPlatforms.forEach((pp) => pp.draw());
 }
 
 function detectCollisions() {

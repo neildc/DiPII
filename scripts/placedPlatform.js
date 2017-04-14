@@ -1,20 +1,23 @@
-function PlacedPlatform(x, y){
-    this.x = x;
-    this.y = y;
+class PlacedPlatform {
 
-    this.draw = function () {
+    constructor (x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    draw() {
         ctx.beginPath();
-        ctx.rect(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
-        ctx.fillStyle = "#00FF00";
+        ctx.rect(this.x, this.y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
+        ctx.fillStyle = "#00FF00";{
         ctx.fill();
         ctx.closePath();
-    } 
+    }
 
     /**
-     * Checks if the player is ontop of this 
+     * Checks if the player is ontop of this
      * placed platform instance
      */
-    this.playerIsOnPlatform = function(player) {
+    playerIsOnPlatform(player) {
 
         // Allow player to stand of the left edge
         var platformLeftBound = this.x - PLAYER_WIDTH;
@@ -23,16 +26,16 @@ function PlacedPlatform(x, y){
         // console.log(player);
 
         /**
-         * Only checking the top bounds 
+         * Only checking the top bounds
          * Since we will have a collision detector
-         * for the bottom and sides of the platform which will 
+         * for the bottom and sides of the platform which will
          * be triggered before this.
          */
         if (player.x > platformLeftBound &&
             player.x < platformRightBound) {
 
             // This would be the bottom of the visible model
-            playersFeet = player.y + PLAYER_HEIGHT;
+            const playersFeet = player.y + PLAYER_HEIGHT;
 
             // We want the player to be standing on top of the platform
             return (playersFeet >= this.y && playersFeet <= this.y+10);

@@ -3,38 +3,46 @@ BASE_FALLING_RATE = 3;
 PLATFORM_SIDE_SPEED = 2;
 FALL_SPEED_UP = 2;
 
-function FallingPlatform() {
-    this.x = canvas.width/2;
-    this.y = 0;
-    this.speed = BASE_FALLING_RATE * goal.getSpeedMultiplier();
+class FallingPlatform {
 
-    this.draw = function () {
+    constructor(){
+        this.x = canvas.width/2;
+        this.y = 0;
+        this.speed = BASE_FALLING_RATE * goal.getSpeedMultiplier();
+    }
+
+
+    draw() {
         ctx.beginPath();
         ctx.rect(this.x, this.y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
         ctx.fillStyle = "#FFFF00";
         ctx.fill();
         ctx.closePath();
-    } 
-
-    this.rect = function() {return {x:this.x, y:this.y, width:PLATFORM_WIDTH, height:PLATFORM_HEIGHT}};
-
-    this.resetToTop = function() {
-        this.y = 0; 
-        this.x = randomXInCanvasWidth(PLATFORM_WIDTH); 
     }
 
-    this.crashedIntoTheGround = function() {
+    rect () {
+        return {
+            x:this.x, y:this.y, width:PLATFORM_WIDTH, height:PLATFORM_HEIGHT
+        };
+    }
+
+    resetToTop() {
+        this.y = 0;
+        this.x = randomXInCanvasWidth(PLATFORM_WIDTH);
+    }
+
+    crashedIntoTheGround () {
         return (this.y >= canvas.height);
     }
 
-    this.collidedWithPlayer = function(player) {
+    collidedWithPlayer(player) {
         var playerRect = {x: player.x, y: player.y,
                           width: PLAYER_WIDTH, height: PLAYER_HEIGHT};
 
         return collision(playerRect, this.rect());
     }
 
-    this.collidedWithPlacedPlatform = function(pp) {
+    collidedWithPlacedPlatform(pp) {
         var playerRect = {x: pp.x, y: pp.y,
                           width: PLATFORM_WIDTH, height: PLATFORM_HEIGHT};
 
@@ -42,21 +50,21 @@ function FallingPlatform() {
 
     }
 
-    this.moveLeft = function() {
+    moveLeft() {
         var leftBound = 0;
         if (this.x > leftBound) {
             this.x -= this.speed;
         }
     }
 
-    this.moveRight = function() {
+    moveRight() {
         var rightBound = canvas.width - PLATFORM_WIDTH;
         if (this.x < rightBound) {
             this.x += this.speed;
         }
     }
 
-    this.update = function () {
+    update() {
         if (this.crashedIntoTheGround()) {
             this.resetToTop();
         }

@@ -2,10 +2,11 @@
  * Created by neil on 24/11/16.
  */
 
-var canvas = document.getElementById("gameCanvas");
-canvas.tabIndex = 1;
 
-var ctx = canvas.getContext("2d");
+let canvas = document.getElementById("gameCanvas");
+tabIndex = 1;
+
+let ctx = canvas.getContext("2d");
 enableNormalKeyEventListeners();
 resetGame();
 

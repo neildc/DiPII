@@ -1,0 +1,23 @@
+{
+  "name": "dipii",
+  "version": "1.0.0",
+  "description": "",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel --watch src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neildc/DiPII.git"
+  },
+  "author": "Neil Dela Cruz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neildc/DiPII/issues"
+  },
+  "homepage": "https://github.com/neildc/DiPII#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1"
+  }
+}

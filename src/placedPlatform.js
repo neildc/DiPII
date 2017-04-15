@@ -6,11 +6,7 @@ class PlacedPlatform {
     }
 
     draw() {
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
-        ctx.fillStyle = "#00FF00";
-        ctx.fill();
-        ctx.closePath();
+        ctx.drawImage(textures.placedPlatform, this.x, this.y);
     }
 
     /**

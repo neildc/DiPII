@@ -14,7 +14,7 @@ console.log(p1);
 
 function drawStatus() {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#FFFFFF";
     ctx.fillText("Fuel: "+p1.fuel, 8, 20);
     ctx.fillText("Lives: "+p1.lives, 8, 40);
     ctx.fillText("Platforms: "+p1.platforms, 8, 60);
@@ -23,6 +23,10 @@ function drawStatus() {
 
 function drawPlacedPlatforms() {
     placedPlatforms.forEach((pp) => pp.draw());
+}
+
+function drawBackground() {
+    ctx.drawImage(textures.background, 0, 0);
 }
 
 function detectCollisions() {
@@ -62,6 +66,7 @@ function update() {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBackground();
     drawPlacedPlatforms();
     p1.draw();
     goal.draw();

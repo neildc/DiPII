@@ -5,17 +5,13 @@
 
 class InvertBlock {
 
-   constructor(x,y){
-       this.x = x;
-       this.y = y;
-   }
+    constructor(x,y){
+        this.x = x;
+        this.y = y;
+    }
 
-   draw() {
-        ctx.beginPath();
-        ctx.rect(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
-        ctx.fillStyle = "#FF0000";
-        ctx.fill();
-        ctx.closePath();
+    draw() {
+        ctx.drawImage(textures.invertBlock, this.x, this.y);
     }
 
     rect() {

@@ -1,4 +1,4 @@
-GOAL_SIZE = 50;
+GOAL_SIZE = 24;
 LEVEL_STEP = 70;
 SPEED_MULTIPLIER = 0.3;
 
@@ -11,11 +11,7 @@ class Goal {
     }
 
     draw() {
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, GOAL_SIZE, GOAL_SIZE);
-        ctx.fillStyle = "#000095";
-        ctx.fill();
-        ctx.closePath();
+        ctx.drawImage(textures.goal, this.x, this.y);
     }
 
     rect() {

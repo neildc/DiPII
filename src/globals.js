@@ -4,8 +4,8 @@ var fallingPlatform;
 var invertBlock;
 var goal;
 
-const PLATFORM_WIDTH = 75;
-const PLATFORM_HEIGHT = 15;
+const PLATFORM_WIDTH = 48;
+const PLATFORM_HEIGHT = 10;
 
 
 

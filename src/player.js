@@ -13,6 +13,7 @@ const PLAYER_WIDTH = 18;
 const ROCKET_SPEED = 10;
 const GRAVITY = 5;
 const MAX_PLATFORMS = 10;
+const SIDE_TO_SIDE_DRAG = 2;
 
 class Player {
 
@@ -36,11 +37,11 @@ class Player {
             this.fuel += FUEL_REFILL_RATE;
         }
 
-        if (leftPressed) { 
+        if (leftPressed) {
             this.moveLeft();
         }
 
-        if (rightPressed) { 
+        if (rightPressed) {
             this.moveRight();
         }
 
@@ -97,14 +98,14 @@ class Player {
     moveLeft() {
         // Make sure it doesn't exceed left boundary
         if (this.x > 0) {
-            this.x -= this.dx;
+            this.x -= this.dx / SIDE_TO_SIDE_DRAG;
         }
     }
 
     moveRight() {
         // Don't exceed right boundary
         if (this.x < (canvas.width - PLAYER_WIDTH)) {
-            this.x += this.dx;
+            this.x += this.dx / SIDE_TO_SIDE_DRAG;
         }
     }
 
@@ -168,4 +169,3 @@ class Player {
         // TODO: move them to a random x
     }
 }
-

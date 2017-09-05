@@ -155,17 +155,22 @@ class Player {
 
     }
 
-    resetPlayerToBottom() {
-        this.y = canvas.height - PLAYER_HEIGHT;
+    // src:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     }
 
-    /**
-     * Move the player back to the bottom at a random position
-     */
+    movePlayerToRandomXAtBottom() {
+        this.y = canvas.height - PLAYER_HEIGHT;
+
+        halfOfPlayerWidth = Math.ceil(PLAYER_WIDTH/2);
+        this.x = getRandomInt(halfOfPlayerWidth, PLAYER_WIDTH + halfOfPlayerWidth);
+    }
+
     respawn() {
         this.lives--;
-        this.resetPlayerToBottom();
-        // TODO: move them to a random x
+        this.movePlayerToRandomXAtBottom();
     }
 }
-

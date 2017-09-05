@@ -4,15 +4,16 @@
 
 
 const FUEL_FULL_TANK = 100;
-const FUEL_REFILL_RATE = 2;
-const FUEL_BURN_RATE = 6;
+const FUEL_REFILL_RATE = 1.5;
+const FUEL_BURN_RATE = 3;
 
 const STARTING_SPEED = 10;
 const PLAYER_HEIGHT = 30;
 const PLAYER_WIDTH = 18;
-const ROCKET_SPEED = 20;
-const GRAVITY = 10;
+const ROCKET_SPEED = 10;
+const GRAVITY = 5;
 const MAX_PLATFORMS = 10;
+const SIDE_TO_SIDE_DRAG = 2;
 
 class Player {
 
@@ -97,14 +98,14 @@ class Player {
     moveLeft() {
         // Make sure it doesn't exceed left boundary
         if (this.x > 0) {
-            this.x -= this.dx;
+            this.x -= this.dx / SIDE_TO_SIDE_DRAG;
         }
     }
 
     moveRight() {
         // Don't exceed right boundary
         if (this.x < (canvas.width - PLAYER_WIDTH)) {
-            this.x += this.dx;
+            this.x += this.dx / SIDE_TO_SIDE_DRAG;
         }
     }
 

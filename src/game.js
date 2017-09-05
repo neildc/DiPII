@@ -15,10 +15,10 @@ console.log(p1);
 function drawStatus() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillText("Fuel: "+p1.fuel, 8, 20);
-    ctx.fillText("Lives: "+p1.lives, 8, 40);
-    ctx.fillText("Platforms: "+p1.platforms, 8, 60);
-    ctx.fillText("Level: "+goal.currentLevel, 8, 80);
+    ctx.fillText("Fuel: " + p1.fuel, 8, 20);
+    ctx.fillText("Lives: " + p1.lives, 8, 40);
+    ctx.fillText("Platforms: " + p1.platforms, 8, 60);
+    ctx.fillText("Level: " + goal.currentLevel, 8, 80);
 }
 
 function drawPlacedPlatforms() {

@@ -49,10 +49,18 @@ function detectCollisions() {
 
     placedPlatforms.forEach(function(pp) {
         if (fallingPlatform.collidedWithPlacedPlatform(pp)) {
+            /**
+             * Destroy the placed platforms
+             *
+             * TODO: Refactor the following two lines out of here
+             *       probably doesn't belong here
+             *       Especially the player class holding the number of platforms
+             *       that are allowed to be placed
+             */
             placedPlatforms.splice(placedPlatforms.indexOf(pp) , 1);
             p1.platforms++;
         }
-    })
+    });
 }
 
 function update() {
@@ -108,4 +116,3 @@ function resetGame() {
 function gameover () {
    resetGame();
 }
-

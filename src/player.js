@@ -36,11 +36,11 @@ class Player {
             this.fuel += FUEL_REFILL_RATE;
         }
 
-        if (leftPressed) { 
+        if (leftPressed) {
             this.moveLeft();
         }
 
-        if (rightPressed) { 
+        if (rightPressed) {
             this.moveRight();
         }
 
@@ -77,7 +77,7 @@ class Player {
             if (pp.playerIsOnPlatform(player)) {
                 ret = true;
             }
-        })
+        });
         return ret;
     }
 

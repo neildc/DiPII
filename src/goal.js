@@ -49,5 +49,5 @@ function yFromLevel(level) {
     } else {
         y = 10 * LEVEL_STEP;;
     }
-    return canvas.height - y;
-}
+
+    return (getCanvas().height - y);

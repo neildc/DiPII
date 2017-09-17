@@ -6,7 +6,7 @@ FALL_SPEED_UP = 2;
 class FallingPlatform {
 
     constructor() {
-        this.x = canvas.width / 2;
+        this.x = getCanvas().width / 2;
         this.y = 0;
         this.speed = BASE_FALLING_RATE * goal.getSpeedMultiplier();
     }
@@ -27,7 +27,7 @@ class FallingPlatform {
     }
 
     crashedIntoTheGround() {
-        return this.y >= canvas.height;
+        return this.y >= getCanvas().height;
     }
 
     collidedWithPlayer(player) {
@@ -52,7 +52,7 @@ class FallingPlatform {
     }
 
     moveRight() {
-        var rightBound = canvas.width - PLATFORM_WIDTH;
+        var rightBound = getCanvas().width - PLATFORM_WIDTH;
         if (this.x < rightBound) {
             this.x += this.speed;
         }

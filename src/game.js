@@ -62,7 +62,6 @@ function update() {
 }
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBackground();
     drawPlacedPlatforms();
     p1.draw();
@@ -70,6 +69,7 @@ function draw() {
     fallingPlatform.draw();
     if (invertBlock != null) invertBlock.draw();
     drawStatus();
+    ctx.clearRect(0, 0, getCanvas().width, getCanvas().height);
 }
 
 function loop() {

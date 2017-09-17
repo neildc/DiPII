@@ -79,8 +79,7 @@ class Player {
     }
 
     playerAboveFloor(playerY) {
-        // console.log(playerY, canvas.height - PLAYER_HEIGHT);
-        return playerY < canvas.height - PLAYER_HEIGHT;
+        return (playerY < (getCanvas().height - PLAYER_HEIGHT));
     }
 
     draw() {
@@ -99,7 +98,7 @@ class Player {
 
     moveRight() {
         // Don't exceed right boundary
-        if (this.x < canvas.width - PLAYER_WIDTH) {
+        if (this.x < (getCanvas().width - PLAYER_WIDTH)) {
             this.x += this.dx;
         }
     }
@@ -144,10 +143,11 @@ class Player {
     }
 
     resetPlayerToRandomXAtBottom() {
-        this.y = canvas.height - PLAYER_HEIGHT;
+        this.y = getCanvas().height - PLAYER_HEIGHT;
 
         let halfOfPlayerWidth = Math.ceil(PLAYER_WIDTH/2);
-        this.x = getRandomInt(halfOfPlayerWidth, canvas.width - halfOfPlayerWidth);
+        this.x = getRandomInt(halfOfPlayerWidth,
+                              getCanvas().width - halfOfPlayerWidth);
     }
 
     respawn() {

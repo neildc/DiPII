@@ -8,7 +8,17 @@ class FallingPlatform {
     constructor() {
         this.x = getCanvas().width / 2;
         this.y = 0;
-        this.speed = BASE_FALLING_RATE * goal.getSpeedMultiplier();
+
+        /* TODO: Figure out why this isn't working
+         *
+         *       - works fine with the bandaid below
+         */
+        //this.speed = this.updateSpeed(1);
+        this.speed = Math.round(BASE_FALLING_RATE * (SPEED_MULTIPLIER * 1));
+    }
+
+    updateSpeed(level) {
+        this.speed = Math.round(BASE_FALLING_RATE * (SPEED_MULTIPLIER * level));
     }
 
     draw() {

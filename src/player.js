@@ -17,7 +17,6 @@ class Player {
     constructor(spawnX, spawnY, lives) {
         this.lives = lives;
         this.fuel = FUEL_FULL_TANK;
-        this.platforms = MAX_PLATFORMS;
         this.x = spawnX;
         this.y = spawnY;
         this.dx = STARTING_SPEED;
@@ -25,52 +24,29 @@ class Player {
         this.assOnFire = false;
     }
 
-    update() {
-
-        this.feelTheGravity();
+    update(state) {
+        this.feelTheGravity(state);
         this.assOnFire = false;
 
         if (this.fuel < FUEL_FULL_TANK) {
             this.fuel += FUEL_REFILL_RATE;
         }
-
-        if (leftPressed) {
-            this.moveLeft();
-        }
-
-        if (rightPressed) {
-            this.moveRight();
-        }
-
-        if (upPressed) {
-            this.fireRockets();
-        }
-        if (spacePressed) {
-
-            // TODO: proper debounce/single press
-            if (fallingPlatform.y > 50) {
-                // 10% chance of placing an invert block instead
-                // of a normal block
-                if (Math.floor(Math.random() * 10 + 0) == 0) {
-                    this.placeInvertBlock();
-                } else {
-                    this.placePlatform();
-                }
-            }
-        }
     }
 
-    feelTheGravity() {
-        if (this.playerAboveFloor(this.y) && !this.playerIsOnAPlacedPlatforms(this)) {
+    feelTheGravity(state) {
+        if (this.playerAboveFloor(this.y)
+        && !this.playerIsOnAPlacedPlatforms(state)) {
 
             this.y += GRAVITY;
         }
     }
 
-    playerIsOnAPlacedPlatforms(player) {
+    // TODO : Broken
+    //        2. Player sometimes stands "inside" the block
+    playerIsOnAPlacedPlatforms(state) {
         var ret = false;
-        placedPlatforms.forEach(function (pp) {
-            if (pp.playerIsOnPlatform(player)) {
+        state.placedPlatforms.forEach(function (pp) {
+            if (pp.playerIsOnPlatform(state.p1)) {
                 ret = true;
             }
         });
@@ -81,7 +57,7 @@ class Player {
         return (playerY < (getCanvas().height - PLAYER_HEIGHT));
     }
 
-    draw() {
+    draw(ctx, textures) {
         ctx.drawImage(textures.dude, this.x, this.y);
         if (this.assOnFire) {
             ctx.drawImage(textures.fire, this.x, this.y);
@@ -125,21 +101,6 @@ class Player {
         }
     }
 
-    placePlatform() {
-        if (this.platforms > 0) {
-            placedPlatforms.push(new PlacedPlatform(fallingPlatform.x, fallingPlatform.y));
-            this.platforms--;
-            fallingPlatform.resetToTop();
-        }
-    }
-
-    placeInvertBlock() {
-
-        // Overwrite the existing invertblock if its there
-        // We only want a single invertblock at any time
-        invertBlock = new InvertBlock(fallingPlatform.x, fallingPlatform.y);
-        fallingPlatform.resetToTop();
-    }
 
     resetPlayerToRandomXAtBottom() {
         this.y = getCanvas().height - PLAYER_HEIGHT;

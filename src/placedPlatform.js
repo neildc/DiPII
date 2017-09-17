@@ -5,7 +5,7 @@ class PlacedPlatform {
         this.y = y;
     }
 
-    draw() {
+    draw(ctx, textures) {
         ctx.drawImage(textures.placedPlatform, this.x, this.y);
     }
 

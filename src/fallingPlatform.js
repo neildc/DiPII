@@ -21,7 +21,7 @@ class FallingPlatform {
         this.speed = Math.round(BASE_FALLING_RATE * (SPEED_MULTIPLIER * level));
     }
 
-    draw() {
+    draw(ctx, textures) {
         ctx.drawImage(textures.fallingPlatform, this.x, this.y);
     }
 
@@ -69,6 +69,7 @@ class FallingPlatform {
     }
 
     update() {
+
         if (this.crashedIntoTheGround()) {
             this.resetToTop();
         }

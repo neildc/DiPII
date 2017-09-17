@@ -13,6 +13,7 @@
 
     <canvas id="gameCanvas" width="800" height="600"></canvas>
 
+    <script src="lib/state.js"           type="text/javascript"></script>
     <script src="lib/globals.js"         type="text/javascript"></script>
     <script src="lib/util.js"            type="text/javascript"></script>
     <script src="lib/keyboard.js"        type="text/javascript"></script>
@@ -23,26 +24,9 @@
     <script src="lib/placedPlatform.js"  type="text/javascript"></script>
     <script src="lib/game.js"            type="text/javascript"></script>
     <script src="lib/textures.js"        type="text/javascript"></script>
+    <script src="lib/main.js"            type="text/javascript"></script>
     <script>
-
-        var textures = {};
-        var fire;
-
-        loadImages(sources, function(images) {
-
-            textures.goal = images.goal;
-            textures.fallingPlatform = images.fallingPlatform;
-            textures.invertBlock = images.invertBlock;
-            textures.placedPlatform = images.placedPlatform;
-            textures.dude = images.dude;
-            textures.fire = images.fire;
-            textures.background = images.background;
-
-            // Executes only after the images have loaded
-
-            resetGame();
-            setInterval(loop, 10);
-        });
+        main();
     </script>
 
     <img src="res/help/clear/Help1.png" />

@@ -10,7 +10,7 @@ class InvertBlock {
         this.y = y;
     }
 
-    draw() {
+    draw(ctx, textures) {
         ctx.drawImage(textures.invertBlock, this.x, this.y);
     }
 

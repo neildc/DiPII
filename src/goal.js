@@ -10,7 +10,7 @@ class Goal {
         this.x = randomXInCanvasWidth(GOAL_SIZE);
     }
 
-    draw() {
+    draw(ctx, textures) {
         ctx.drawImage(textures.goal, this.x, this.y);
     }
 
@@ -32,10 +32,6 @@ class Goal {
         this.x = randomXInCanvasWidth(GOAL_SIZE);
     }
 
-    getSpeedMultiplier() {
-        return SPEED_MULTIPLIER * this.currentLevel;
-    }
-
 }
 
 // Used to increase the distance from the floor of the game
@@ -51,3 +47,4 @@ function yFromLevel(level) {
     }
 
     return (getCanvas().height - y);
+}

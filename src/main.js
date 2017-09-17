@@ -25,4 +25,3 @@ function main() {
         setInterval(() => {gameLoop(ctx, textures, state);}, 10);
     });
 }
-m

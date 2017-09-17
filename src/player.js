@@ -11,7 +11,6 @@ const PLAYER_HEIGHT = 30;
 const PLAYER_WIDTH = 18;
 const ROCKET_SPEED = 20;
 const GRAVITY = 10;
-const MAX_PLATFORMS = 10;
 
 class Player {
 

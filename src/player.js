@@ -2,17 +2,20 @@
  * Created by neil on 24/11/16.
  */
 
+import {getCanvas, collision, getRandomInt} from './util.js';
+import {leftPressed, rightPressed, upPressed} from './keyboard.js';
+
 const FUEL_FULL_TANK = 100;
 const FUEL_REFILL_RATE = 2;
 const FUEL_BURN_RATE = 6;
 
 const STARTING_SPEED = 10;
-const PLAYER_HEIGHT = 30;
-const PLAYER_WIDTH = 18;
+export const PLAYER_HEIGHT = 30;
+export const PLAYER_WIDTH = 18;
 const ROCKET_SPEED = 20;
 const GRAVITY = 10;
 
-class Player {
+export default class Player {
 
     constructor(spawnX, spawnY, lives) {
         this.lives = lives;

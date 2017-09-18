@@ -1,5 +1,12 @@
+import BACKGROUND from  '../res/textures/background.jpg';
+import GOAL from '../res/textures/goal.png';
+import FALLING_PLATFORM from '../res/textures/fallingPlatform.png';
+import INVERT_BLOCK from '../res/textures/invertBlock.png';
+import PLACED_PLATFORM from '../res/textures/placedPlatformSpikes.png';
+import DUDE from '../res/textures/dude.png';
+import FIRE from '../res/textures/fire.png';
 
-function loadImages(sources, callback) {
+export function loadImages(sources, callback) {
     var images = {};
     var loadedImages = 0;
     var numImages = 0;
@@ -14,16 +21,16 @@ function loadImages(sources, callback) {
                 callback(images);
             }
         };
-        images[src].src = sources[src];
+        images[src].src = 'output' + sources[src];
     }
 }
 
-var sources = {
-    background: 'res/textures/background.jpg',
-    goal: 'res/textures/goal.png',
-    fallingPlatform: 'res/textures/fallingPlatform.png',
-    invertBlock: 'res/textures/invertBlock.png',
-    placedPlatform: 'res/textures/placedPlatformSpikes.png',
-    dude: 'res/textures/dude.png',
-    fire: 'res/textures/fire.png'
+export const texturePaths = {
+    goal: GOAL,
+    fallingPlatform:FALLING_PLATFORM,
+    invertBlock:INVERT_BLOCK,
+    placedPlatform:PLACED_PLATFORM,
+    dude:DUDE,
+    fire:FIRE,
+    background:BACKGROUND
 };

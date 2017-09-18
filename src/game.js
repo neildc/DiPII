@@ -1,6 +1,8 @@
-/**
-
- */
+import {spacePressed, invertKeys} from './keyboard.js';
+import {getCanvas} from './util.js';
+import {MAX_PLATFORMS, PLATFORM_WIDTH, PLATFORM_HEIGHT} from './constants.js';
+import InvertBlock from './invertBlock.js';
+import PlacedPlatform from './placedPlatform.js';
 
 function drawStatus(ctx, state) {
     ctx.font = "16px Arial";
@@ -128,3 +130,5 @@ function placeInvertBlock(state) {
                                         state.fallingPlatform.y);
     state.fallingPlatform.resetToTop();
 }
+
+export {gameLoop, resetGame};

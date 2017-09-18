@@ -1,27 +1,34 @@
-function main() {
-    let textures = {};
-    var fire;
+import {enableNormalKeyEventListeners} from './keyboard.js';
 
-    enableNormalKeyEventListeners();
+import State from './state.js';
+import {getCanvas} from './util.js';
+import {gameLoop, resetGame} from './game.js';
 
-    // Loads images then run the following callback once that is complete
-    loadImages(sources, function(images) {
-        let canvas = document.getElementById("gameCanvas");
-        let ctx = canvas.getContext("2d");
-        let state = new State();
-        tabIndex = 1;
+import {loadImages, texturePaths} from './textures.js';
 
-        textures.goal = images.goal;
-        textures.fallingPlatform = images.fallingPlatform;
-        textures.invertBlock = images.invertBlock;
-        textures.placedPlatform = images.placedPlatform;
-        textures.dude = images.dude;
-        textures.fire = images.fire;
-        textures.background = images.background;
 
-        resetGame(state);
+let textures = {};
+var fire;
 
-        // Run the game loop every 10ms
-        setInterval(() => {gameLoop(ctx, textures, state);}, 10);
-    });
-}
+enableNormalKeyEventListeners();
+
+// Loads images then run the following callback once that is complete
+loadImages(texturePaths, function(images) {
+    let canvas = document.getElementById("gameCanvas");
+    let ctx = canvas.getContext("2d");
+    let state = new State();
+    const tabIndex = 1;
+
+    textures.goal = images.goal;
+    textures.fallingPlatform = images.fallingPlatform;
+    textures.invertBlock = images.invertBlock;
+    textures.placedPlatform = images.placedPlatform;
+    textures.dude = images.dude;
+    textures.fire = images.fire;
+    textures.background = images.background;
+
+    resetGame(state);
+
+    // Run the game loop every 10ms
+    setInterval(() => {gameLoop(ctx, textures, state);}, 10);
+});

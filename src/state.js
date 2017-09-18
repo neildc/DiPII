@@ -1,4 +1,10 @@
-class State {
+import {getCanvas} from './util.js';
+import Player from './player.js';
+import {PLAYER_HEIGHT} from './player.js';
+import Goal from './goal.js';
+import FallingPlatform from './fallingPlatform.js';
+
+export default class State {
 
     constructor() {
         this.reset();

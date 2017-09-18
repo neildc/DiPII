@@ -1,8 +1,10 @@
-GOAL_SIZE = 24;
-LEVEL_STEP = 70;
-SPEED_MULTIPLIER = 0.3;
+import {getCanvas, randomXInCanvasWidth, collision} from './util.js';
+import {PLAYER_WIDTH, PLAYER_HEIGHT} from './player.js';
 
-class Goal {
+const GOAL_SIZE = 24;
+const LEVEL_STEP = 70;
+
+export default class Goal {
 
     constructor() {
         this.currentLevel = 1; //TODO: not sure if this should go here

@@ -1,4 +1,7 @@
-class PlacedPlatform {
+import {PLATFORM_WIDTH, PLATFORM_HEIGHT} from './constants.js';
+import {PLAYER_WIDTH, PLAYER_HEIGHT} from './player.js';
+
+export default class PlacedPlatform {
 
     constructor(x, y) {
         this.x = x;

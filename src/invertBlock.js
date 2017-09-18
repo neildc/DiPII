@@ -3,7 +3,11 @@
  *
  */
 
-class InvertBlock {
+import {PLATFORM_WIDTH, PLATFORM_HEIGHT} from './constants.js';
+import {PLAYER_WIDTH, PLAYER_HEIGHT} from './player.js';
+import {collision} from './util.js';
+
+export default class InvertBlock {
 
     constructor(x, y) {
         this.x = x;

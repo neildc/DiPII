@@ -1,9 +1,15 @@
+import {PLATFORM_WIDTH, PLATFORM_HEIGHT, LEVEL_SPEED_MULTIPLIER} from './constants';
+import {getCanvas, collision, randomXInCanvasWidth} from './util.js';
 
-BASE_FALLING_RATE = 3;
-PLATFORM_SIDE_SPEED = 2;
-FALL_SPEED_UP = 2;
+import {PLAYER_WIDTH, PLAYER_HEIGHT} from './player.js';
 
-class FallingPlatform {
+import {sPressed, aPressed, dPressed} from './keyboard.js';
+
+const BASE_FALLING_RATE = 3;
+const PLATFORM_SIDE_SPEED = 2;
+const FALL_SPEED_UP = 2;
+
+export default class FallingPlatform {
 
     constructor() {
         this.x = getCanvas().width / 2;
@@ -14,11 +20,11 @@ class FallingPlatform {
          *       - works fine with the bandaid below
          */
         //this.speed = this.updateSpeed(1);
-        this.speed = Math.round(BASE_FALLING_RATE * (SPEED_MULTIPLIER * 1));
+        this.speed = Math.round(BASE_FALLING_RATE * (LEVEL_SPEED_MULTIPLIER * 1));
     }
 
     updateSpeed(level) {
-        this.speed = Math.round(BASE_FALLING_RATE * (SPEED_MULTIPLIER * level));
+        this.speed = Math.round(BASE_FALLING_RATE * (LEVEL_SPEED_MULTIPLIER * level));
     }
 
     draw(ctx, textures) {

@@ -3,27 +3,29 @@
 /**
  *  TODO: Test if this would be viable to move into a hashmap
  *         without much latency
- * 
+ *
  *
  *  This isn't great I could probably all these variables into a
  *  hashmap with the key of the KEY_CODE.
  *
  *  Sure it's an O(1) lookup, but I want to avoid that lookup
  *  altogether for the key detection
- * 
- * 
+ *
+ *
  */
 
-var leftPressed = false;
-var rightPressed = false;
-var downPressed = false;
-var upPressed = false;
-var wPressed = false;
-var aPressed = false;
-var dPressed = false;
-var sPressed = false;
-var spacePressed = false;
-var invertedKeys = false;
+/* TODO: I don't like this...
+ */
+export var leftPressed = false;
+export var rightPressed = false;
+export var downPressed = false;
+export var upPressed = false;
+export var wPressed = false;
+export var aPressed = false;
+export var dPressed = false;
+export var sPressed = false;
+export var spacePressed = false;
+export var invertedKeys = false;
 
 const LEFT_KEY = 37;
 const UP_KEY = 38;
@@ -35,7 +37,7 @@ const S_KEY = 83;
 const D_KEY = 68;
 const SPACE_KEY = 32;
 
-function invertKeys() {
+export function invertKeys() {
     if (invertedKeys) {
         // Disable inverted, return to normal
         disableInvertedKeyEventListeners();
@@ -48,7 +50,7 @@ function invertKeys() {
     resetKeyState();
 }
 
-function enableNormalKeyEventListeners() {
+export function enableNormalKeyEventListeners() {
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
 }
@@ -120,11 +122,11 @@ function keyUpHandler(e) {
  * Difference with these below is that instead of the normal
  *
  *      case LEFT_KEY: leftPressed ...
- *      
+ *
  *   we now have for the inverted mode
  *
  *      case LEFT_KEY: aPressed  ...
- *  
+ *
  */
 function invertedKeyDownHandler(e) {
     //console.log(e.keyCode);

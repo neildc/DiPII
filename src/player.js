@@ -24,6 +24,20 @@ class Player {
         this.assOnFire = false;
     }
 
+    detectKeys() {
+        if (leftPressed) {
+            this.moveLeft();
+        }
+
+        if (rightPressed) {
+            this.moveRight();
+        }
+
+        if (upPressed) {
+            this.fireRockets();
+        }
+    }
+
     update(state) {
         this.feelTheGravity(state);
         this.assOnFire = false;

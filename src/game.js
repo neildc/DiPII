@@ -56,17 +56,9 @@ function update(state) {
 
 function detectKeys(state) {
 
-    if (leftPressed) {
-        state.p1.moveLeft();
-    }
+    state.p1.detectKeys();
+    state.fallingPlatform.detectKeys();
 
-    if (rightPressed) {
-        state.p1.moveRight();
-    }
-
-    if (upPressed) {
-        state.p1.fireRockets();
-    }
     if (spacePressed) {
         // TODO: proper debounce/single press
         if (state.fallingPlatform.y > 50) {

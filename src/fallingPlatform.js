@@ -68,12 +68,7 @@ class FallingPlatform {
         }
     }
 
-    update() {
-
-        if (this.crashedIntoTheGround()) {
-            this.resetToTop();
-        }
-
+    detectKeys() {
         // Allow the user speed up the falling speed of the block
         if (sPressed) {
             this.y += this.speed * FALL_SPEED_UP;
@@ -88,5 +83,13 @@ class FallingPlatform {
         if (dPressed) {
             this.moveRight();
         }
+    }
+
+    update() {
+
+        if (this.crashedIntoTheGround()) {
+            this.resetToTop();
+        }
+
     }
 }

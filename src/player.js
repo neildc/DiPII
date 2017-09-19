@@ -6,13 +6,13 @@ import {getCanvas, collision, getRandomInt} from './util.js';
 import {leftPressed, rightPressed, upPressed} from './keyboard.js';
 
 const FUEL_FULL_TANK = 100;
-const FUEL_REFILL_RATE = 2;
-const FUEL_BURN_RATE = 6;
+const FUEL_REFILL_RATE = 4;
+const FUEL_BURN_RATE = 2;
 
-const STARTING_SPEED = 10;
+const STARTING_SPEED = 5;
 export const PLAYER_HEIGHT = 30;
 export const PLAYER_WIDTH = 18;
-const ROCKET_SPEED = 20;
+const ROCKET_SPEED = 15;
 const GRAVITY = 10;
 
 export default class Player {

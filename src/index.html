@@ -1,19 +1,71 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>DIP II</title>
-    <style>
-        * { padding: 0; margin: 0; background-color: #000000 }
-        /*mmm cornflower blue*/
-        canvas { background: #93CCEA; display: block; margin: 0 auto; }
-    </style>
-</head>
-<body>
+    <head>
+        <title>DiPII</title>
+        <style type="text/css">
+         * {
+             padding: 0;
+             margin: 0;
+             background-color: #06101A
+         }
 
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
-    <script src="/output/bundle.js"></script>
+         /*mmm cornflower blue*/
+         canvas {
+             background: #93CCEA;
+             display: block;
+             margin: 0 auto;
+             margin-top: 50px;
+             border-style: solid;
+             border-color: white;
+             border-width: 0.1px;
 
+         }
 
-</body>
+         .sk-rotating-plane {
+             width: 40px;
+             height: 40px;
+             position: fixed;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             background-color: #FFF;
+             -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
+             animation: sk-rotatePlane 1.2s infinite ease-in-out;
+         }
+
+         @-webkit-keyframes sk-rotatePlane {
+             0% {
+                 -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                 transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+             50% {
+                 -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                 transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+             100% {
+                 -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                 transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); }
+         }
+
+         @keyframes sk-rotatePlane {
+             0% {
+                 -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                 transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+             50% {
+                 -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                 transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+             100% {
+                 -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                 transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); }
+         }
+
+        </style>
+    </head>
+    <body>
+        <div class="sk-rotating-plane" id="spinner" ></div>
+        <script src="/output/bundle.js"></script>
+
+        <!-- visibility is toggled on in main.js after all assets have been loaded -->
+        <div id="game" style="display:none" >
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+        </div>
+    </body>
 </html>

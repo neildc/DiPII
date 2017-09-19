@@ -27,6 +27,8 @@ loadImages(texturePaths, function(images) {
     textures.fire = images.fire;
     textures.background = images.background;
 
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('game').style.display = 'block';
     resetGame(state);
 
     // Run the game loop every 10ms

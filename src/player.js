@@ -43,7 +43,6 @@ export default class Player {
 
     update(state) {
         this.feelTheGravity(state);
-        this.assOnFire = false;
 
         if (this.fuel < FUEL_FULL_TANK) {
             this.fuel += FUEL_REFILL_RATE;
@@ -78,6 +77,12 @@ export default class Player {
         ctx.drawImage(textures.dude, this.x, this.y);
         if (this.assOnFire) {
             ctx.drawImage(textures.fire, this.x, this.y);
+
+            /* TODO: move this out of here,
+             *       Not ideal, but we'll have to leave this here
+             *       until we find a better spot to put it
+             */
+            this.assOnFire = false;
         }
     }
 
@@ -101,7 +106,6 @@ export default class Player {
             if (this.fuel < 20) {
                 this.fuel -= FUEL_REFILL_RATE;
             } else {
-                this.assOnFire = true;
                 // Don't let him/her break through the
                 // atmosphere (don't want themto die due to lack of oxygen)
                 if (this.y > 0) {
@@ -113,6 +117,7 @@ export default class Player {
                     //
                     //      Makes traversing side to side too easy
                     this.fuel -= FUEL_BURN_RATE + FUEL_REFILL_RATE;
+                    this.assOnFire = true;
                 }
             }
         }

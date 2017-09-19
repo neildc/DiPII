@@ -7,9 +7,6 @@ import {gameLoop, resetGame} from './game.js';
 import {loadImages, texturePaths} from './textures.js';
 
 
-let textures = {};
-var fire;
-
 enableNormalKeyEventListeners();
 
 // Loads images then run the following callback once that is complete
@@ -17,7 +14,7 @@ loadImages(texturePaths, function(images) {
     let canvas = document.getElementById("gameCanvas");
     let ctx = canvas.getContext("2d");
     let state = new State();
-    const tabIndex = 1;
+    let textures = {};
 
     textures.goal = images.goal;
     textures.fallingPlatform = images.fallingPlatform;
@@ -29,6 +26,7 @@ loadImages(texturePaths, function(images) {
 
     document.getElementById('spinner').style.display = 'none';
     document.getElementById('game').style.display = 'block';
+
     resetGame(state);
 
     // Run the game loop every 10ms

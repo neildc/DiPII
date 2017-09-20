@@ -21,7 +21,7 @@ export function loadImages(sources, callback) {
                 callback(images);
             }
         };
-        images[src].src = 'output' + sources[src];
+        images[src].src = './output/' + sources[src];
     }
 }
 
